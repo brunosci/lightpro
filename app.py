@@ -208,12 +208,7 @@ if selected_page == 'Estratégias Bull':
       st.write('**Trades individuais**')
       st.dataframe(trades, use_container_width=True)
             
-
-    colli = st.columns([1])
-    
-    with colli:
-        st.markdown(
-            """
+    st.markdown("""
             <style>
             .column-fill {
                 background-color: green;
