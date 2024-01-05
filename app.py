@@ -20,7 +20,7 @@ import plotly.express as px
 import seaborn as sns
 import plotly.figure_factory as ff
 
-st.set_page_config(page_title="Quantsistent - Strategies Mastery for Consistent Trading", page_icon=":bar_chart:",layout="wide")
+st.set_page_config(page_title="Quantsistent - Identifique estratégias consistentes para seus trades", page_icon=":bar_chart:",layout="wide")
 
 hide_streamlit_style = """
 <style>
@@ -35,25 +35,25 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 col100, col200, col300 = st.columns([1,1,1],gap='large')
 
 with col100:   
-    symbol = st.text_input('Enter Symbol', value='AAPL')
+    symbol = st.text_input('Ticker: ', value='AAPL')
     symbol = symbol.upper()
     st.session_state['symbol']=symbol
 
 with col200:
-    start_date = st.date_input('Start Date', value=datetime(2023, 1, 1))
+    start_date = st.date_input('Data inicial', value=datetime(2023, 1, 1))
     st.session_state['start_date']=start_date
     
 with col300:
     today = datetime.now().date()
     tomorrow = today + timedelta(days=1)
-    end_date = st.date_input('End Date', value=today)
+    end_date = st.date_input('Data final', value=today)
     end_date= end_date + timedelta(days=1)
     st.session_state['end_date'] = end_date
 
 
-selected_page = option_menu(menu_title = None, options =['Buy', 'Sell'], icons=['graph-up-arrow', 'graph-down-arrow'], default_index=0, orientation="horizontal")    
+selected_page = option_menu(menu_title = None, options =['Estratégias Bull', 'Estratégias Sell'], icons=['graph-up-arrow', 'graph-down-arrow'], default_index=0, orientation="horizontal")    
 
-if selected_page == 'Buy':   
+if selected_page == 'Estratégias Bull':   
     def fetch_data(symbol, start_date, end_date):
         extensions = ["", ".SA", ".L", ".DE", ".TO", ".PA", ".AX",".T",".SS", ".NS", ".HK", ".SI"]
         country = ['US', 'Brazil', 'UK', 'Germany', 'Canada','France','Australia','Japan', 'China', 'India', 'Hong Kong', 'Singapore']
@@ -63,11 +63,11 @@ if selected_page == 'Buy':
             data = yf.download(symbol_with_extension, start=start_date, end=end_date)
             if not data.empty:               
                 st.session_state['data'] = data
-                st.write('Symbol: ', symbol_with_extension)
+                st.write('Ticker: ', symbol_with_extension)
                 country_stock = country[counter]
                 st.session_state['symbol']=symbol
                 st.session_state['country_market'] = country_stock
-                st.write('Country: ', country_stock)
+                st.write('País: ', country_stock)
                 break
             else:
                 counter = counter+1
@@ -84,28 +84,28 @@ if selected_page == 'Buy':
           
     fetch_data(symbol, start_date, end_date)
 
-    st.title('Trend')
+    st.title('Cruzamento de médias')
        
     col0, col1 = st.columns([1,1],gap='large')
     col2, col3 = st.columns([1,1],gap='large')
 
     with col0:
       
-      st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+      st.write("A estratégia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas.")
 
-      st.markdown(f"**Asset: {symbol} From: {start_date} To: {end_date}**")
+      st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
         
       stock_data = st.session_state.data.copy()
     
-      selected_value = st.slider('**Select EMA value:**', min_value=0, max_value=200, value=20, step=1)
-      selected_value_vol = st.slider('**Select EMA Volume value:**', min_value=0, max_value=200, value=20, step=1)
+      selected_short = st.slider('**Selecione a menor média:**', min_value=0, max_value=200, value=8, step=1)
+      selected_long = st.slider('**Selecione a maior média:**', min_value=selected_short, max_value=200, value=21, step=1)
         
       # Calculating Exponential Moving Averages (EMA)
-      stock_data['EMA_Close'] = stock_data['Close'].ewm(span=selected_value, adjust=False).mean()
-      stock_data['EMA_Volume'] = stock_data['Volume'].ewm(span=selected_value_vol, adjust=False).mean()
+      stock_data['EMA_Short'] = stock_data['Close'].ewm(span=selected_short, adjust=False).mean()
+      stock_data['EMA_Long'] = stock_data['Volume'].ewm(span=selected_long, adjust=False).mean()
       
       # Condition for being above EMA
-      stock_data['Above_EMA'] = (stock_data['Close'] > stock_data['EMA_Close']) & (stock_data['Volume'] > stock_data['EMA_Volume'])
+      stock_data['Above_EMA'] = (stock_data['EMA_Short'] > stock_data['EMA_Long'])
       
       # Trading strategy
       in_trade = False
