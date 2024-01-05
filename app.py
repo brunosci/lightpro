@@ -209,9 +209,23 @@ if selected_page == 'Estratégias Bull':
       st.dataframe(trades, use_container_width=True)
             
 
-
+    colli = st.columns([1])
     
-    st.title('Bollinger Bands')
+    with colli[0]:
+        st.markdown(
+            """
+            <style>
+            .column-fill {
+                background-color: green;
+                padding: 10px;
+                border-radius: 0px;
+            }
+            </style>
+            """
+            , unsafe_allow_html=True)
+        
+    
+    st.title('Bandas de Bollinger')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
