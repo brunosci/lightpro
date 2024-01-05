@@ -91,7 +91,7 @@ if selected_page == 'Estratégias Bull':
 
     with col0:
       
-      st.write("A estratégia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas.")
+      st.write("A estratégia se inicia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas. Ela se encerra no cruzamento contrário das médias.")
 
       st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
         
@@ -194,13 +194,13 @@ if selected_page == 'Estratégias Bull':
     
     with col1:    
       fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
-      fig_combined_cumulative.update_layout(title='Cumulative Return of Strategy', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
+      fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
       st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
     
 
     with col2:
       fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
-      fig_combined.update_layout(title='Max Return, Return and Drawdown of each trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
+      fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
       st.plotly_chart(fig_combined, use_container_width=True)
     
 
