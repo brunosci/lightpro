@@ -98,7 +98,7 @@ if selected_page == 'Estratégias Bull':
       stock_data = st.session_state.data.copy()
     
       selected_short = st.slider('**Selecione a menor média:**', min_value=0, max_value=200, value=8, step=1)
-      selected_long = st.slider('**Selecione a maior média:**', min_value=0, max_value=200, value=21, step=1)
+      selected_long = st.slider('**Selecione a maior média:**', min_value=selected_short+1, max_value=200, value=21, step=1)
         
       # Calculating Exponential Moving Averages (EMA)
       stock_data['EMA_Short'] = stock_data['Close'].ewm(span=selected_short, adjust=False).mean()
@@ -185,27 +185,27 @@ if selected_page == 'Estratégias Bull':
           evolution.append(total_return_per)
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
-      st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+      st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
     
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
-      st.write(f'**Median return per trade: {mediana}**')
+      st.write(f'**Retorno mediano por trade: {mediana}**')
     
     
     with col1:    
-      fig_combined_cumulative = px.line(evolution, title='Cumulative Return of strategy')
+      fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
       fig_combined_cumulative.update_layout(title='Cumulative Return of Strategy', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
       st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
     
 
     with col2:
-      fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Max Return, Return and Drawdown of each trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+      fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
       fig_combined.update_layout(title='Max Return, Return and Drawdown of each trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
       st.plotly_chart(fig_combined, use_container_width=True)
     
 
     with col3:
-      st.write('**Single Trades**')
+      st.write('**Trades individuais**')
       st.dataframe(trades, use_container_width=True)
             
 
