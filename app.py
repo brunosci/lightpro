@@ -211,7 +211,7 @@ if selected_page == 'Estratégias Bull':
 
     colli = st.columns([1])
     
-    with colli[0]:
+    with colli:
         st.markdown(
             """
             <style>
