@@ -98,11 +98,11 @@ if selected_page == 'Estratégias Bull':
       stock_data = st.session_state.data.copy()
     
       selected_short = st.slider('**Selecione a menor média:**', min_value=0, max_value=200, value=8, step=1)
-      selected_long = st.slider('**Selecione a maior média:**', min_value=selected_short, max_value=200, value=21, step=1)
+      selected_long = st.slider('**Selecione a maior média:**', min_value=0, max_value=200, value=21, step=1)
         
       # Calculating Exponential Moving Averages (EMA)
       stock_data['EMA_Short'] = stock_data['Close'].ewm(span=selected_short, adjust=False).mean()
-      stock_data['EMA_Long'] = stock_data['Volume'].ewm(span=selected_long, adjust=False).mean()
+      stock_data['EMA_Long'] = stock_data['Close'].ewm(span=selected_long, adjust=False).mean()
       
       # Condition for being above EMA
       stock_data['Above_EMA'] = (stock_data['EMA_Short'] > stock_data['EMA_Long'])
