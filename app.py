@@ -208,16 +208,8 @@ if selected_page == 'Estratégias Bull':
       st.write('**Trades individuais**')
       st.dataframe(trades, use_container_width=True)
             
-    st.markdown("""
-            <style>
-            .column-fill {
-                background-color: green;
-                padding: 10px;
-                border-radius: 0px;
-            }
-            </style>
-            """
-            , unsafe_allow_html=True)
+    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)
+
         
     
     st.title('Bandas de Bollinger')
