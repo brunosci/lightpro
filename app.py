@@ -936,7 +936,7 @@ else:
 ############ CM
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Cruzamento de médias</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
     #st.title('Cruzamento de médias')
        
     col0, col1 = st.columns([1,1],gap='large')
