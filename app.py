@@ -1063,7 +1063,7 @@ else:
 ############ BB
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Bandas de Bollinger</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
     #st.title('Bandas de Bollinger')
 
     symbol = st.session_state.symbol
@@ -1194,7 +1194,7 @@ else:
 ############ RM
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Retorno à média</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
     st.title('Retorno a média')
 
     symbol = st.session_state.symbol
@@ -1330,7 +1330,7 @@ else:
 ############ RSI
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Índice de Força Relativa</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
     #st.title('')
 
     symbol = st.session_state.symbol
@@ -1460,7 +1460,7 @@ else:
 ############ MACD
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
     st.title('MACD')
 
     symbol = st.session_state.symbol
@@ -1613,7 +1613,7 @@ else:
 ############ VOLUME
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Volume</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
     #st.title('Volume')
 
     symbol = st.session_state.symbol
