@@ -96,6 +96,7 @@ if selected_page == 'Estratégias Bull':
 
     with col0:
       st.write(" ")
+      st.write(" ")
       st.write("A estratégia se inicia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas. Ela se encerra no cruzamento contrário das médias.")
 
       
@@ -232,7 +233,8 @@ if selected_page == 'Estratégias Bull':
 
 
     with col4:
-
+      st.write(" ")
+      st.write(" ")
       st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da banda superior.")
         
       stock_data = st.session_state.data.copy()
@@ -364,7 +366,8 @@ if selected_page == 'Estratégias Bull':
 
       # Partition 1
       with col8:
-
+          st.write(" ")
+          st.write(" ")
           st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da média da Banda de Bollinger.")
                        
           stock_data = st.session_state.data.copy()
@@ -498,6 +501,8 @@ if selected_page == 'Estratégias Bull':
 
       # Partition 1
       with col12:
+          st.write(" ")
+          st.write(" ")          
           st.write("A estratégia se inicia quando o Índice de Força Relativa (IFR ou RSI) atinge o valor mínimo definido nos parâmetros e se encerra quando o preço atinge o valor máximo definido.")
 
           stock_data = st.session_state.data.copy()
@@ -626,7 +631,8 @@ if selected_page == 'Estratégias Bull':
 
       # Partition 1
       with col16:
-
+          st.write(" ")
+          st.write(" ")
           st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
             
           stock_data = st.session_state.data.copy()
@@ -780,7 +786,8 @@ if selected_page == 'Estratégias Bull':
 
       # Partition 1
       with col20:
-
+          st.write(" ")
+          st.write(" ")
           st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
             
           stock_data = st.session_state.data.copy()
@@ -936,7 +943,8 @@ else:
     col2, col3 = st.columns([1,1],gap='large')
 
     with col0:
-      
+      st.write(" ")
+      st.write(" ")      
       st.write("A estratégia se inicia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas. Ela se encerra no cruzamento contrário das médias.")
 
       
@@ -1068,7 +1076,8 @@ else:
 
 
     with col4:
-
+      st.write(" ")
+      st.write(" ")
       st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da banda superior.")
         
       stock_data = st.session_state.data.copy()
@@ -1200,7 +1209,8 @@ else:
 
       # Partition 1
       with col8:
-
+          st.write(" ")
+          st.write(" ")
           st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da média da Banda de Bollinger.")
                        
           stock_data = st.session_state.data.copy()
@@ -1335,6 +1345,8 @@ else:
 
       # Partition 1
       with col12:
+          st.write(" ")
+          st.write(" ")          
           st.write("A estratégia se inicia quando o Índice de Força Relativa (IFR ou RSI) atinge o valor mínimo definido nos parâmetros e se encerra quando o preço atinge o valor máximo definido.")
 
           stock_data = st.session_state.data.copy()
@@ -1463,7 +1475,8 @@ else:
 
       # Partition 1
       with col16:
-
+          st.write(" ")
+          st.write(" ")
           st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
             
           stock_data = st.session_state.data.copy()
@@ -1615,7 +1628,8 @@ else:
 
       # Partition 1
       with col20:
-
+          st.write(" ")
+          st.write(" ")
           st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
             
           stock_data = st.session_state.data.copy()
