@@ -63,11 +63,10 @@ if selected_page == 'Estratégias Bull':
             data = yf.download(symbol_with_extension, start=start_date, end=end_date)
             if not data.empty:               
                 st.session_state['data'] = data
-                st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
                 country_stock = country[counter]
                 st.session_state['symbol']=symbol
                 st.session_state['country_market'] = country_stock
-                st.markdown(f"**País: {country_stock}**")
+                st.markdown(f"**País: {country_stock}    Ticker: {symbol}     De: {start_date}     Até: {end_date}**")
                 break
             else:
                 counter = counter+1
