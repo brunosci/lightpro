@@ -219,7 +219,7 @@ if selected_page == 'Estratégias Bull':
 ############ BB
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Bandas de Bollinger</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
   
     #st.title('Bandas de Bollinger')
 
@@ -351,7 +351,7 @@ if selected_page == 'Estratégias Bull':
 ############ RM
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Retorno à média</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
     #st.title('Retorno a média')
 
     symbol = st.session_state.symbol
@@ -486,7 +486,7 @@ if selected_page == 'Estratégias Bull':
 ############ RSI
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Índice de Força Relativa</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
     #st.title('Índice de Força Relativa')
 
     symbol = st.session_state.symbol
@@ -616,7 +616,7 @@ if selected_page == 'Estratégias Bull':
 ############ MACD
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
     #st.title('MACD')
 
     symbol = st.session_state.symbol
@@ -771,7 +771,7 @@ if selected_page == 'Estratégias Bull':
 ############ VOLUME
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Volume</h2>", unsafe_allow_html=True)         
-    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
     #st.title('Volume')
 
     symbol = st.session_state.symbol
