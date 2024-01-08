@@ -89,7 +89,7 @@ if selected_page == 'Estratégias Bull':
 ############ CM
     
     st.markdown(f"<h3 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'>Cruzamento de médias</h3>", unsafe_allow_html=True)         
-    st.title('Cruzamento de médias')
+    #st.title('Cruzamento de médias')
        
     col0, col1 = st.columns([1,1],gap='large')
     col2, col3 = st.columns([1,1],gap='large')
