@@ -944,7 +944,7 @@ else:
       stock_data['EMA_Long'] = stock_data['Close'].ewm(span=selected_long, adjust=False).mean()
       
       # Condition for being above EMA
-      stock_data['Above_EMA'] = (stock_data['EMA_Short'] > stock_data['EMA_Long'])
+      stock_data['Condition'] = (stock_data['EMA_Short'] > stock_data['EMA_Long'])
       
       in_trade = False
       entry_price = 0
