@@ -479,6 +479,132 @@ if selected_page == 'Estratégias Bull':
 
 
 
+############ RM
+    
+    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
+    st.title('Retorno a média')
+
+    symbol = st.session_state.symbol
+    start_date = st.session_state.start_date
+    end_date = st.session_state.end_date
+    end_date = end_date - timedelta(days=1)
+    
+    col12, col13 = st.columns([1,1],gap='large')
+    col14, col15 = st.columns([1,1],gap='large')
+
+    if selected_page != "Sell":
+
+      # Partition 1
+      with col12:
+          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+
+          st.markdown(f"**Asset: {symbol} From: {start_date} To: {end_date}**")
+            
+          stock_data = st.session_state.data.copy()
+        
+          window_length = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=14, step=1)
+          window_high = st.slider('**Select Overbought value:**', min_value=60, max_value=100, value=70, step=1)
+          window_low = st.slider('**Select Oversold value:**', min_value=0, max_value=40, value=30, step=1)
+
+          delta = stock_data['Close'].diff()
+          gain = (delta.where(delta > 0, 0)).rolling(window=window_length).mean()
+          loss = (-delta.where(delta < 0, 0)).rolling(window=window_length).mean()
+          RS = gain / loss
+          RSI = 100 - (100 / (1 + RS))
+          stock_data['RSI'] = RSI
+
+          in_trade = False
+          entry_price = 0
+          exit_price = 0
+          total_return = 0
+
+          trades_buy =[]
+          trades_sell =[]
+          trades_periodo=[]
+          trades_drawdown = []
+          trades_high= []
+
+          for index, row in stock_data.iterrows():
+              if not in_trade and row['RSI'] <= window_low:
+                  in_trade = True
+                  entry_price = row['Close']
+                  entry_price=round(entry_price,2)
+                  trades_buy.append(entry_price)
+                  inicio = index
+                  drawdown = row['Close']
+                  highest =  row['Close']
+              elif in_trade == True and row['High'] > highest:
+                  highest = row['High']
+              elif in_trade == True and row['Low'] < drawdown:
+                  drawdown = row['Low']
+              elif in_trade and row['RSI'] >= window_high:
+                  in_trade = False
+                  exit_price = row['Close']
+                  exit_price=round(exit_price,2)
+                  trades_sell.append(exit_price)
+                  fim = index
+                  periodo = fim - inicio
+                  trades_periodo.append(periodo)            
+                  drawdown = ((drawdown/entry_price)-1)*100
+                  drawdown = round(drawdown, 2)
+                  trades_drawdown.append(drawdown)
+                  if exit_price > highest:
+                      highest = exit_price 
+                  high = ((highest/entry_price)-1)*100
+                  high = round(high, 2)
+                  trades_high.append(high)
+
+          if len(trades_buy) != len(trades_sell):
+            trades_buy = trades_buy[:-1]
+          
+          # Creating DataFrame for trades
+          trades = pd.DataFrame({'Buy': trades_buy, 'Sell': trades_sell, 'Period': trades_periodo, 
+                                 'Drawdown': trades_drawdown, 'Max Return': trades_high})
+          
+          # Calculating returns and capital
+          trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
+          trades['Return'] = round(trades.Return, 2)
+          return_list = trades['Return'].to_list()
+          capital = 100
+          for i in return_list:
+              capital = capital + capital * (i / 100)
+          capital = capital - 100
+          capital = round(capital, 2)
+          
+          # Displaying results in Streamlit
+        
+                
+          capital = 100
+          total_return = 1
+          evolution = []
+        
+          for index, r_value in trades['Return'].items():
+              total_return *= 1 + (trades.loc[index, 'Return'])/100
+              total_return_per = (total_return-1)*100
+              evolution.append(total_return_per)
+          global_r = (total_return - 1) * 100 
+          global_r = round(global_r,2)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+        
+          mediana = trades.Return.median()
+          mediana = round(mediana, 2)
+          st.write(f'**Median return per trade: {mediana}**')
+
+      with col13:    
+          fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
+          fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
+          st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
+    
+
+      with col14:
+          fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+          fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
+          st.plotly_chart(fig_combined, use_container_width=True)
+    
+
+      with col15:
+          st.write('**Trades individuais**')
+          st.dataframe(trades, use_container_width=True)   
 
 
 
