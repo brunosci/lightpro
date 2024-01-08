@@ -231,15 +231,13 @@ if selected_page == 'Estratégias Bull':
 
     with col4:
 
-      st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
-
-      st.markdown(f"**Asset: {symbol} From: {start_date} To: {end_date}**")
+      st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da banda superior.")
         
       stock_data = st.session_state.data.copy()
     
-      window = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=20, step=1)
+      window = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=0, max_value=200, value=20, step=1)
       std_multiplier = 2
-      distance = st.slider('**Select percentage difference value between bands:**', min_value=0, max_value=10, value=3, step=1)
+      distance = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=0, max_value=10, value=3, step=1)
         
 
       stock_data['MA'] = stock_data['Close'].rolling(window=window).mean()
@@ -364,14 +362,14 @@ if selected_page == 'Estratégias Bull':
       # Partition 1
       with col8:
 
-          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+          st.write("A estratégia se inicia quando o preço atinge o valor da banda inferior de Bollinger e se encerra quando o preço atinge o valor da média da Banda de Bollinger.")
                        
           stock_data = st.session_state.data.copy()
         
-          media = st.slider('**Select Mean value:**', min_value=1, max_value=200, value=20, step=1)
+          media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1)
           window = 20
           std_multiplier = 2
-          distance_mr = st.slider('**Select percentage difference value between bands:**', min_value=0, max_value=10, value=3, step=1, key='slider1')
+          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=0, max_value=10, value=3, step=1, key='slider1')
   
           stock_data['MEDIA'] = stock_data['Close'].rolling(window=media).mean()
     
@@ -454,11 +452,11 @@ if selected_page == 'Estratégias Bull':
               evolution.append(total_return_per)
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
-          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
         
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana}**')
     
 
       with col9:    
@@ -496,13 +494,13 @@ if selected_page == 'Estratégias Bull':
 
       # Partition 1
       with col12:
-          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+          st.write("A estratégia se inicia quando o Índice de Força Relativa (IFR ou RSI) atinge o valor mínimo definido nos parâmetros e se encerra quando o preço atinge o valor máximo definido.")
 
           stock_data = st.session_state.data.copy()
         
-          window_length = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=14, step=1)
-          window_high = st.slider('**Select Overbought value:**', min_value=60, max_value=100, value=70, step=1)
-          window_low = st.slider('**Select Oversold value:**', min_value=0, max_value=40, value=30, step=1)
+          window_length = st.slider('**Selecione a Média:**', min_value=0, max_value=200, value=14, step=1)
+          window_high = st.slider('**Selecione o valor de sobrecompra do IFR:**', min_value=60, max_value=100, value=70, step=1)
+          window_low = st.slider('**Selecione o valor de sobrevenda do IFR:**', min_value=0, max_value=40, value=30, step=1)
 
           delta = stock_data['Close'].diff()
           gain = (delta.where(delta > 0, 0)).rolling(window=window_length).mean()
@@ -582,11 +580,11 @@ if selected_page == 'Estratégias Bull':
               evolution.append(total_return_per)
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
-          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
         
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana}**')
 
       with col13:    
           fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
@@ -628,9 +626,9 @@ if selected_page == 'Estratégias Bull':
             
           stock_data = st.session_state.data.copy()
         
-          short_window = st.slider('**Select Short EMA value:**', min_value=0, max_value=40, value=12, step=1)
-          long_window = st.slider('**Select Long EMA value:**', min_value=0, max_value=40, value=26, step=1)
-          n_consecutive_true_count = st.slider('**Select condition value:**', min_value=0, max_value=10, value=3, step=1)
+          short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
+          long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
+          n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
           
           signal_window=9
 
@@ -734,11 +732,11 @@ if selected_page == 'Estratégias Bull':
               evolution.append(total_return_per)
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
-          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
         
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana}**')
 
 
       with col17:    
@@ -781,8 +779,8 @@ if selected_page == 'Estratégias Bull':
             
           stock_data = st.session_state.data.copy()
         
-          short_window = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=20, step=1, key='slider_vol_short')          
-          n_volume = st.slider('**Select volume percentage increase from mean value:**', min_value=0, max_value=100, value=50, step=1,key='slider_vol')
+          short_window = st.slider('**Selecione o valor da Média:**', min_value=0, max_value=200, value=20, step=1, key='slider_vol_short')          
+          n_volume = st.slider('**Selecione o valor percentual de aumento de volume:**', min_value=0, max_value=100, value=50, step=1,key='slider_vol')
           
           stock_data['Volume_M'] = stock_data['Volume'].rolling(window=short_window, min_periods=1).mean()
 
@@ -862,11 +860,11 @@ if selected_page == 'Estratégias Bull':
               evolution.append(total_return_per)
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
-          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
         
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana}**')
 
 
       with col21:    
