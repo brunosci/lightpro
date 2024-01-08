@@ -781,7 +781,7 @@ if selected_page == 'Estratégias Bull':
             
           stock_data = st.session_state.data.copy()
         
-          short_window = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=20, step=1)          
+          short_window = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=20, step=1, key='slider_vol_short')          
           n_volume = st.slider('**Select volume percentage increase from mean value:**', min_value=0, max_value=100, value=50, step=1,key='slider_vol')
           
           stock_data['Volume_M'] = stock_data['Volume'].rolling(window=short_window, min_periods=1).mean()
