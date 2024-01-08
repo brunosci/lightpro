@@ -356,9 +356,6 @@ if selected_page == 'Estratégias Bull':
     end_date = st.session_state.end_date
     end_date = end_date - timedelta(days=1)
     
-    
-    selected_page = option_menu(menu_title = None, options =['Buy', 'Sell'], icons=['graph-up-arrow', 'graph-down-arrow'], default_index=0, orientation="horizontal")    
-    
     col8, co9 = st.columns([1,1],gap='large')
     col0, col1 = st.columns([1,1],gap='large')
 
