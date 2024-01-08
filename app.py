@@ -63,11 +63,11 @@ if selected_page == 'Estratégias Bull':
             data = yf.download(symbol_with_extension, start=start_date, end=end_date)
             if not data.empty:               
                 st.session_state['data'] = data
-                st.write('Ticker: ', symbol_with_extension)
+                st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
                 country_stock = country[counter]
                 st.session_state['symbol']=symbol
                 st.session_state['country_market'] = country_stock
-                st.write('País: ', country_stock)
+                st.markdown('País: ', country_stock)
                 break
             else:
                 counter = counter+1
@@ -84,7 +84,7 @@ if selected_page == 'Estratégias Bull':
           
     fetch_data(symbol, start_date, end_date)
 
-
+    
     
 ############ CM
     
@@ -98,7 +98,7 @@ if selected_page == 'Estratégias Bull':
       
       st.write("A estratégia se inicia na confirmação do fechamento do dia seguinte ao rompimento das médias selecionadas. Ela se encerra no cruzamento contrário das médias.")
 
-      st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
+      
         
       stock_data = st.session_state.data.copy()
     
