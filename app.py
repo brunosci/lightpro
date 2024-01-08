@@ -479,10 +479,10 @@ if selected_page == 'Estratégias Bull':
 
 
 
-############ RM
+############ RSI
     
     st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Retorno a média')
+    st.title('Índice de Força Relativa')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -498,8 +498,6 @@ if selected_page == 'Estratégias Bull':
       with col12:
           st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
 
-          st.markdown(f"**Asset: {symbol} From: {start_date} To: {end_date}**")
-            
           stock_data = st.session_state.data.copy()
         
           window_length = st.slider('**Select Mean value:**', min_value=0, max_value=200, value=14, step=1)
@@ -605,6 +603,163 @@ if selected_page == 'Estratégias Bull':
       with col15:
           st.write('**Trades individuais**')
           st.dataframe(trades, use_container_width=True)   
+
+
+
+############ MACD
+    
+    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
+    st.title('MACD')
+
+    symbol = st.session_state.symbol
+    start_date = st.session_state.start_date
+    end_date = st.session_state.end_date
+    end_date = end_date - timedelta(days=1)
+    
+    col16, col17 = st.columns([1,1],gap='large')
+    col18, col19 = st.columns([1,1],gap='large')
+
+    if selected_page != "Sell":
+
+      # Partition 1
+      with col16:
+
+          st.title('Buy strategy')
+          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+
+          st.markdown(f"**Asset: {symbol} From: {start_date} To: {end_date}**")
+            
+          stock_data = st.session_state.data.copy()
+        
+          short_window = st.slider('**Select Short EMA value:**', min_value=0, max_value=40, value=12, step=1)
+          long_window = st.slider('**Select Long EMA value:**', min_value=0, max_value=40, value=26, step=1)
+          n_consecutive_true_count = st.slider('**Select condition value:**', min_value=0, max_value=10, value=3, step=1)
+          
+          signal_window=9
+
+          short_ema = stock_data['Close'].ewm(span=short_window, adjust=False).mean()
+          long_ema = stock_data['Close'].ewm(span=long_window, adjust=False).mean()
+
+          stock_data['short_ema'] = short_ema
+          stock_data['long_ema'] = long_ema
+
+          macd_line = short_ema - long_ema
+
+          signal_line = macd_line.ewm(span=signal_window, adjust=False).mean()
+
+          histogram = macd_line - signal_line
+
+          stock_data['Histogram'] = histogram
+          stock_data['Increases'] = stock_data['Histogram'].diff().gt(0)
+          stock_data['MACD'] = macd_line
+          stock_data['Signal_Line'] = signal_line
+
+
+          entry_price = 0
+          exit_price = 0
+          total_return = 0
+
+
+          consecutive_true_count = 0
+          consecutive_false_count = 0
+          in_trade = False
+          trades_buy = []
+          trades_sell = []
+          trades_periodo = []
+          trades_drawdown = []
+          trades_high=[]
+
+          for index, row in stock_data.iterrows():
+              if row['Increases']:
+                  consecutive_true_count += 1
+                  consecutive_false_count = 0
+              else:
+                  consecutive_true_count = 0
+                  consecutive_false_count += 1
+
+              if consecutive_true_count == n_consecutive_true_count and not in_trade:
+                  in_trade = True
+                  entry_price = row['Close']
+                  entry_price = round(entry_price, 2)
+                  trades_buy.append(entry_price)
+                  inicio = index
+                  drawdown = row['Close']
+                  highest =  row['Close']
+              elif in_trade == True and row['High'] > highest:
+                  highest = row['High']
+              elif in_trade and row['Low'] < drawdown:
+                  drawdown = row['Low']
+
+              elif in_trade and consecutive_false_count == n_consecutive_true_count:
+                  in_trade = False
+                  exit_price = row['Close']
+                  exit_price = round(exit_price, 2)
+                  trades_sell.append(exit_price)
+                  fim = index
+                  periodo = fim - inicio
+                  trades_periodo.append(periodo)            
+                  drawdown = ((drawdown/entry_price)-1)*100
+                  drawdown = round(drawdown, 2)
+                  trades_drawdown.append(drawdown)
+                  if exit_price > highest:
+                      highest = exit_price 
+                  high = ((highest/entry_price)-1)*100
+                  high = round(high, 2)
+                  trades_high.append(high)
+
+          if len(trades_buy) != len(trades_sell):
+            trades_buy = trades_buy[:-1]
+          
+          # Creating DataFrame for trades
+          trades = pd.DataFrame({'Buy': trades_buy, 'Sell': trades_sell, 'Period': trades_periodo, 
+                                 'Drawdown': trades_drawdown, 'Max Return': trades_high})
+          
+          # Calculating returns and capital
+          trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
+          trades['Return'] = round(trades.Return, 2)
+          return_list = trades['Return'].to_list()
+          capital = 100
+          for i in return_list:
+              capital = capital + capital * (i / 100)
+          capital = capital - 100
+          capital = round(capital, 2)
+          
+          # Displaying results in Streamlit
+        
+                
+          capital = 100
+          total_return = 1
+          evolution = []
+        
+          for index, r_value in trades['Return'].items():
+              total_return *= 1 + (trades.loc[index, 'Return'])/100
+              total_return_per = (total_return-1)*100
+              evolution.append(total_return_per)
+          global_r = (total_return - 1) * 100 
+          global_r = round(global_r,2)
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
+        
+          mediana = trades.Return.median()
+          mediana = round(mediana, 2)
+          st.write(f'**Median return per trade: {mediana}**')
+
+
+      with col17:    
+          fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
+          fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
+          st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
+    
+
+      with col18:
+          fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+          fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
+          st.plotly_chart(fig_combined, use_container_width=True)
+    
+
+      with col19:
+          st.write('**Trades individuais**')
+          st.dataframe(trades, use_container_width=True)   
+
 
 
 
