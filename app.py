@@ -1195,7 +1195,7 @@ else:
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Retorno à média</h2>", unsafe_allow_html=True)         
     st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
-    st.title('Retorno a média')
+    #st.title('Retorno a média')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -1461,7 +1461,7 @@ else:
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
     st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
-    st.title('MACD')
+    #st.title('MACD')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -1614,7 +1614,7 @@ else:
     
     st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Volume</h2>", unsafe_allow_html=True)         
     st.markdown(f"<h6 style='text-align: left; color: white; background-color: #FF6347; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
-    #st.title('Volume')
+    ##st.title('Volume')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
