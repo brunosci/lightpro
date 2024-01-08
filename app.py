@@ -67,7 +67,7 @@ if selected_page == 'Estratégias Bull':
                 country_stock = country[counter]
                 st.session_state['symbol']=symbol
                 st.session_state['country_market'] = country_stock
-                st.markdown('País: ', country_stock)
+                st.markdown(f"**País: {country_stock}**")
                 break
             else:
                 counter = counter+1
