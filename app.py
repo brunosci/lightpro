@@ -356,7 +356,7 @@ if selected_page == 'Estratégias Bull':
     end_date = st.session_state.end_date
     end_date = end_date - timedelta(days=1)
     
-    col8, co9 = st.columns([1,1],gap='large')
+    col8, col9 = st.columns([1,1],gap='large')
     col0, col1 = st.columns([1,1],gap='large')
 
     if selected_page != "Sell":
