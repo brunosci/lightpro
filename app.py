@@ -888,7 +888,7 @@ if selected_page == 'Estratégias Bull':
 ####################################################################################################
 ####################################################################################################
 else:
-        def fetch_data(symbol, start_date, end_date):
+    def fetch_data(symbol, start_date, end_date):
         extensions = ["", ".SA", ".L", ".DE", ".TO", ".PA", ".AX",".T",".SS", ".NS", ".HK", ".SI"]
         country = ['US', 'Brazil', 'UK', 'Germany', 'Canada','France','Australia','Japan', 'China', 'India', 'Hong Kong', 'Singapore']
         counter = 0
