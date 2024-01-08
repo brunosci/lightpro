@@ -371,7 +371,7 @@ if selected_page == 'Estratégias Bull':
           media = st.slider('**Select Mean value:**', min_value=1, max_value=200, value=20, step=1)
           window = 20
           std_multiplier = 2
-          distance_mr = st.slider('**Select percentage difference value between bands:**', min_value=0, max_value=10, value=3, step=1)
+          distance_mr = st.slider('**Select percentage difference value between bands:**', min_value=0, max_value=10, value=3, step=1, key='slider1')
   
           stock_data['MEDIA'] = stock_data['Close'].rolling(window=media).mean()
     
