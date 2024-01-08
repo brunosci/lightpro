@@ -217,8 +217,10 @@ if selected_page == 'Estratégias Bull':
 
 ############ BB
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Bandas de Bollinger')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Bandas de Bollinger</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
+  
+    #st.title('Bandas de Bollinger')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -346,8 +348,9 @@ if selected_page == 'Estratégias Bull':
 
 ############ RM
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Retorno a média')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Retorno à média</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
+    #st.title('Retorno a média')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -479,8 +482,9 @@ if selected_page == 'Estratégias Bull':
 
 ############ RSI
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Índice de Força Relativa')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Índice de Força Relativa</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    #st.title('Índice de Força Relativa')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -606,8 +610,9 @@ if selected_page == 'Estratégias Bull':
 
 ############ MACD
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('MACD')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    #st.title('MACD')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -759,8 +764,9 @@ if selected_page == 'Estratégias Bull':
 
 ############ VOLUME
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Volume')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>Volume</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    #st.title('Volume')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -922,8 +928,9 @@ else:
     
 ############ CM
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)         
-    st.title('Cruzamento de médias')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Cruzamento de médias</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    #st.title('Cruzamento de médias')
        
     col0, col1 = st.columns([1,1],gap='large')
     col2, col3 = st.columns([1,1],gap='large')
@@ -1047,8 +1054,9 @@ else:
 
 ############ BB
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Bandas de Bollinger')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Bandas de Bollinger</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+    #st.title('Bandas de Bollinger')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -1176,7 +1184,8 @@ else:
 
 ############ RM
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Retorno à média</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
     st.title('Retorno a média')
 
     symbol = st.session_state.symbol
@@ -1310,8 +1319,9 @@ else:
 
 ############ RSI
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Índice de Força Relativa')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Índice de Força Relativa</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)     
+    #st.title('')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
@@ -1437,7 +1447,8 @@ else:
 
 ############ MACD
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
     st.title('MACD')
 
     symbol = st.session_state.symbol
@@ -1588,8 +1599,9 @@ else:
 
 ############ VOLUME
     
-    st.markdown(f"<h5 style='text-align: left; color: white; background-color: green; padding: 10px; border-radius: 0px;'></h5>", unsafe_allow_html=True)      
-    st.title('Volume')
+    st.markdown(f"<h2 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'>Volume</h2>", unsafe_allow_html=True)         
+    st.markdown(f"<h6 style='text-align: left; color: white; background-color: red; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)    
+    #st.title('Volume')
 
     symbol = st.session_state.symbol
     start_date = st.session_state.start_date
