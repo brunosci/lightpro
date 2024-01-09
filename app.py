@@ -941,11 +941,10 @@ else:
             data = yf.download(symbol_with_extension, start=start_date, end=end_date)
             if not data.empty:               
                 st.session_state['data'] = data
-                st.markdown(f"**Ticker: {symbol} De: {start_date} Até: {end_date}**")
                 country_stock = country[counter]
                 st.session_state['symbol']=symbol
                 st.session_state['country_market'] = country_stock
-                st.markdown(f"**País: {country_stock}**")
+                st.markdown(f"**País:** {country_stock}    **Ticker:** {symbol}     **De:** {start_date}     **Até:** {end_date}")
                 break
             else:
                 counter = counter+1
@@ -1252,10 +1251,10 @@ else:
                        
           stock_data = st.session_state.data.copy()
         
-          media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1)
+          media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1,key='rm_media')
           window = 20
           std_multiplier = 2
-          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1, key='slider1')
+          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1, key='rm_distance')
   
           stock_data['MEDIA'] = stock_data['Close'].rolling(window=media).mean()
     
