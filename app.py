@@ -1972,8 +1972,7 @@ else:
                 capital = round(capital, 2)
               
                 # Displaying results in Streamlit
-            
-                    
+                            
                 capital = 100
                 total_return = 1
                 evolution = []
@@ -1984,12 +1983,17 @@ else:
                     evolution.append(total_return_per)
                 global_r = (total_return - 1) * 100 
                 global_r = round(global_r,2)
+
                 st.title(j)
                 st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
             
                 mediana = trades.Return.median()
                 mediana = round(mediana, 2)
                 st.write(f'**Retorno mediano por trade: {mediana}**')
+              except:
+                None
+else:
+    None
     
 
 
