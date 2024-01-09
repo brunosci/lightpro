@@ -1783,26 +1783,21 @@ else:
         start_date = st.session_state.start_date
         end_date = st.session_state.end_date
         end_date = end_date - timedelta(days=1)
-        
-        col16 = st.columns([1],gap='large')
-        #col18, col19 = st.columns([1,1],gap='large')
-    
+           
         if selected_page != "Sell":
-    
-          # Partition 1
-          with col16:
-              st.write(" ")
-              st.write(" ")
-              st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
-              
-              short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
-              long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
-              n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
-              
-              signal_window=9
 
-        else:
-            None
+          st.write(" ")
+          st.write(" ")
+          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+          
+          short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
+          long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
+          n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
+          
+          signal_window=9
 
     else:
         None
+
+else:
+    None
