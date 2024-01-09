@@ -1995,7 +1995,7 @@ else:
                     st.write('**Trades individuais**')
                     st.dataframe(trades, use_container_width=True)     
                 with col333:
-                    fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+                    fig_combined = px.bar(trades, x=trades.index, y=['Highest','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
                     fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
                     st.plotly_chart(fig_combined, use_container_width=True)
         
