@@ -20,7 +20,7 @@ import plotly.express as px
 import seaborn as sns
 import plotly.figure_factory as ff
 
-st.set_page_config(page_title="Quantsistent - Identifique estratégias consistentes para seus trades", page_icon=":bar_chart:",layout="wide")
+st.set_page_config(page_title="Quantsistent - Estratégias consistentes para Trades", page_icon=":bar_chart:",layout="wide")
 
 hide_streamlit_style = """
 <style>
@@ -43,7 +43,7 @@ st.write('')
 
 
 with st.sidebar:
-    selected_option = option_menu(menu_title = "|||QUANTsistency|||", options =['Light', 'Pro'], icons=['bar-chart', 'bar-chart'], menu_icon=logo_path)
+    selected_option = option_menu(menu_title = "|||Quantsistent|||", options =['Light', 'Pro'], icons=['bar-chart', 'bar-chart'])
 
 
 if selected_option == 'Light':
