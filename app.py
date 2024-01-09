@@ -255,9 +255,9 @@ if selected_page == 'Estratégias Bull':
         
       stock_data = st.session_state.data.copy()
     
-      window = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=0, max_value=200, value=20, step=1)
+      window = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1)
       std_multiplier = 2
-      distance = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=0, max_value=10, value=3, step=1)
+      distance = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1)
         
 
       stock_data['MA'] = stock_data['Close'].rolling(window=window).mean()
@@ -394,7 +394,7 @@ if selected_page == 'Estratégias Bull':
           media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1)
           window = 20
           std_multiplier = 2
-          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=0, max_value=10, value=3, step=1, key='slider1')
+          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1, key='slider1')
   
           stock_data['MEDIA'] = stock_data['Close'].rolling(window=media).mean()
     
@@ -529,9 +529,9 @@ if selected_page == 'Estratégias Bull':
 
           stock_data = st.session_state.data.copy()
         
-          window_length = st.slider('**Selecione a Média:**', min_value=0, max_value=200, value=14, step=1)
+          window_length = st.slider('**Selecione a Média:**', min_value=1, max_value=200, value=14, step=1)
           window_high = st.slider('**Selecione o valor de sobrecompra do IFR:**', min_value=60, max_value=100, value=70, step=1)
-          window_low = st.slider('**Selecione o valor de sobrevenda do IFR:**', min_value=0, max_value=40, value=30, step=1)
+          window_low = st.slider('**Selecione o valor de sobrevenda do IFR:**', min_value=1, max_value=40, value=30, step=1)
 
           delta = stock_data['Close'].diff()
           gain = (delta.where(delta > 0, 0)).rolling(window=window_length).mean()
@@ -658,13 +658,13 @@ if selected_page == 'Estratégias Bull':
       with col16:
           st.write(" ")
           st.write(" ")
-          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+          st.write("A estratégia inicia quando número de valores crescentes consecutivos do MACD é atingido e encerra quando o mesmo número de valores decrescentes é atingido.")
             
           stock_data = st.session_state.data.copy()
         
-          short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
-          long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
-          n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
+          short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=1, max_value=40, value=12, step=1)
+          long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=1, max_value=40, value=26, step=1)
+          n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=1, max_value=10, value=3, step=1)
           
           signal_window=9
 
@@ -816,12 +816,12 @@ if selected_page == 'Estratégias Bull':
       with col20:
           st.write(" ")
           st.write(" ")
-          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+          st.write("A estratégia inicia quando o valor percentual de aumento de volume é atingido, sendo o candle verde, e se encerra quando a média de volume desse primeiro momento é retomada.")
             
           stock_data = st.session_state.data.copy()
         
-          short_window = st.slider('**Selecione o valor da Média:**', min_value=0, max_value=200, value=20, step=1, key='slider_vol_short')          
-          n_volume = st.slider('**Selecione o valor percentual de aumento de volume:**', min_value=0, max_value=100, value=50, step=1,key='slider_vol')
+          short_window = st.slider('**Selecione o valor da Média:**', min_value=1, max_value=200, value=20, step=1, key='slider_vol_short')          
+          n_volume = st.slider('**Selecione o valor percentual de aumento de volume:**', min_value=1, max_value=100, value=50, step=1,key='slider_vol')
           
           stock_data['Volume_M'] = stock_data['Volume'].rolling(window=short_window, min_periods=1).mean()
 
