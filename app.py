@@ -1870,7 +1870,7 @@ else:
               except:
                 None
             
-            st.dataframe(condicao_prox, use_container_width=True)  
+            st.markdown(condicao_prox, use_container_width=True)  
 
 
 
