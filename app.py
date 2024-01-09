@@ -1986,22 +1986,23 @@ else:
                 mediana = round(mediana, 2)
                 st.write(f'**Retorno mediano por trade: {mediana}**')
     
-            col111, col222,col333 = st.columns([1,1,1],gap='large')
-            with col111:    
-                fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
-                fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
-                st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
+                col111, col222,col333 = st.columns([1,1,1],gap='large')
+                  
+                with col111:    
+                    fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
+                    fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
+                    st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
+            
         
-    
-            with col222:
-                fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
-                fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
-                st.plotly_chart(fig_combined, use_container_width=True)
+                with col222:
+                    fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+                    fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
+                    st.plotly_chart(fig_combined, use_container_width=True)
+            
         
-    
-            with col333:
-                st.write('**Trades individuais**')
-                st.dataframe(trades, use_container_width=True)  
+                with col333:
+                    st.write('**Trades individuais**')
+                    st.dataframe(trades, use_container_width=True)  
 
 
                   
