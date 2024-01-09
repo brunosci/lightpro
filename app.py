@@ -1969,13 +1969,43 @@ else:
                 capital = capital - 100
                 capital = round(capital,2)             
                 st.title(j)
-                st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {capital} %</h5>", unsafe_allow_html=True)                
+
+                capital = 100
+                total_return = 1
+                evolution = []
+            
+                for index, r_value in trades['Return'].items():
+                    total_return *= 1 + (trades.loc[index, 'Return'])/100
+                    total_return_per = (total_return-1)*100
+                    evolution.append(total_return_per)
+                global_r = (total_return - 1) * 100 
+                global_r = round(global_r,2)
+                st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
+            
                 mediana = trades.Return.median()
                 mediana = round(mediana, 2)
                 st.write(f'**Retorno mediano por trade: {mediana}**')
-                desc = trades.describe()
-                st.dataframe(desc)
+            
+                col1, col2, col3 = st.columns([1,1,1],gap='large')
+        
+                with col1:    
+                    fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
+                    fig_combined_cumulative.update_layout(title='Retorno cumulativo da estratégia', xaxis_title='Trades', yaxis_title='Return (percentage)',showlegend=False)
+                    st.plotly_chart(fig_combined_cumulative, use_container_width=True)        
+            
+        
+                with col2:
+                    fig_combined = px.bar(trades, x=trades.index, y=['Max Return','Drawdown','Return'], title='Retorno Potencial, Retorno e Drawdown por trade', color_discrete_sequence=['navy', 'red', 'cornflowerblue'])
+                    fig_combined.update_layout(title='Retorno Potencial, Retorno e Drawdown por trade', xaxis_title='Trades', yaxis_title='Percentage',  **{'barmode': 'overlay'})
+                    st.plotly_chart(fig_combined, use_container_width=True)
+            
+        
+                with col3:
+                    st.write('**Trades individuais**')
+                    st.dataframe(trades, use_container_width=True)
 
+
+                  
             
               except:
                 None
