@@ -43,7 +43,7 @@ st.write('')
 
 
 with st.sidebar:
-    selected_option = option_menu(menu_title = "||| QUANTSISTENT |||", options =['Light', 'Pro'], icons=['bar-chart', 'bar-chart'])
+    selected_option = option_menu(menu_title = "Versões", options =['Light', 'Pro'], icons=['bar-chart', 'bar-chart'])
 
 
 if selected_option == 'Light':
