@@ -1872,9 +1872,5 @@ else:
             
             st.markdown(condicao_prox)  
 
-
-else:
-    None
-    
-
-
+    else:
+        None
