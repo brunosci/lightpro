@@ -391,10 +391,10 @@ if selected_page == 'Estratégias Bull':
                        
           stock_data = st.session_state.data.copy()
         
-          media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1)
+          media = st.slider('**Selecione a média da Banda de Bollinger:**', min_value=1, max_value=200, value=20, step=1, key='rm_media')
           window = 20
           std_multiplier = 2
-          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1, key='slider1')
+          distance_mr = st.slider('**Selecione a diferença percentual entre as bandas:**', min_value=1, max_value=10, value=3, step=1, key='rm_distance')
   
           stock_data['MEDIA'] = stock_data['Close'].rolling(window=media).mean()
     
