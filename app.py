@@ -260,8 +260,8 @@ if selected_page == 'Estratégias Bull':
     
       stock_data['Upper_BB'] = stock_data['MA'] + std_multiplier * stock_data['std']
       stock_data['Lower_BB'] = stock_data['MA'] - std_multiplier * stock_data['std']
-    
-      stock_data['Condition'] = (stock_data['Upper_BB']/stock_data['Lower_BB']) > (1 + (distance/100))
+      stock_data['Division'] =  stock_data['Upper_BB']/stock_data['Lower_BB']   
+      stock_data['Condition'] = stock_data['Division'].apply(lambda x: True if x > (1 + (distance / 100)) else False)
 
 
       in_trade = False
