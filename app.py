@@ -1753,6 +1753,17 @@ if selected_option == 'Light':
               st.write('**Trades individuais**')
               st.dataframe(trades, use_container_width=True)   
 
+
+
+##############################################################
+##############################################################
+##############################################################
+############# V E R S Ã O    P R O ###########################
+##############################################################
+##############################################################
+##############################################################
+
+
 else:
     col200, col300 = st.columns([1,1],gap='large')
     
@@ -1786,16 +1797,104 @@ else:
            
         if selected_page != "Sell":
 
-          st.write(" ")
-          st.write(" ")
-          st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+            st.write(" ")
+            st.write(" ")
+            st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
           
-          short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
-          long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
-          n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
+            short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
+            long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
+            n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
           
-          signal_window=9
+            signal_window=9
 
+
+            condicao_prox = []
+            
+            for j in lista:
+              try:
+                database=[]
+                ticker = j+'.SA
+            
+                stock_data = yf.download(ticker, start=start_date)
+                short_window=12
+                long_window=26
+                signal_window=9
+            
+                short_ema = stock_data['Close'].ewm(span=short_window, adjust=False).mean()
+                long_ema = stock_data['Close'].ewm(span=long_window, adjust=False).mean()
+            
+                stock_data['short_ema'] = short_ema
+                stock_data['long_ema'] = long_ema
+            
+                macd_line = short_ema - long_ema
+            
+                signal_line = macd_line.ewm(span=signal_window, adjust=False).mean()
+            
+                histogram = macd_line - signal_line
+            
+                stock_data['Histogram'] = histogram
+                stock_data['Increases'] = stock_data['Histogram'].diff().gt(0)
+                stock_data['MACD'] = macd_line
+                stock_data['Signal_Line'] = signal_line
+            
+            
+                entry_price = 0
+                exit_price = 0
+                total_return = 0
+            
+            
+                consecutive_true_count = 0
+                consecutive_false_count = 0
+                in_trade = False
+                trades_buy = []
+                trades_sell = []
+                trades_periodo = []
+                trades_drawdown = []
+                trades_high=[]
+            
+                stock_data = stock_data[-3:]
+            
+                if not stock_data.Increases[0]:
+                  for index, row in stock_data.iterrows():
+                      if row['Increases']:
+                          consecutive_true_count += 1
+                          consecutive_false_count = 0
+                      else:
+                          consecutive_true_count = 0
+                          consecutive_false_count += 1
+                          None
+                      if consecutive_true_count == 2:
+                        condicao_prox.append(j)
+                      else:
+                        None
+            
+              except:
+                None
+            
+            st.dataframe(condicao_prox, use_container_width=True)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     else:
         None
 
