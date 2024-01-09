@@ -34,7 +34,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 logo_path = "logoquantsistent.JPG"
-st.markdown("<h4 style='text-align: center; color: grey;'><div class="centered"><img src="{logo_path}" alt="Logo" width="300"></div></h4>", unsafe_allow_html=True)                 
+st.markdown("<h4 style='text-align: center; color: grey;'><img src="{logo_path}" alt="Logo" width="300"></h4>", unsafe_allow_html=True)                 
 
 
 
