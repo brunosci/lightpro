@@ -34,7 +34,27 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 logo_path = "logoquantsistent.JPG"
-st.image(logo_path, width=300)
+st.markdown(
+    f"""
+    <style>
+    .centered {{
+        display: flex;
+        justify-content: center;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Display the image centered
+st.markdown(
+    f'<div class="centered"><img src="{logo_path}" alt="Logo" width="200"></div>',
+    unsafe_allow_html=True,
+)
+
+
+
+
 
 col100, col200, col300 = st.columns([1,1,1],gap='large')
 
