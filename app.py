@@ -114,7 +114,7 @@ if selected_page == 'Estratégias Bull':
         
       stock_data = st.session_state.data.copy()
     
-      selected_short = st.slider('**Selecione a menor média:**', min_value=0, max_value=200, value=8, step=1)
+      selected_short = st.slider('**Selecione a menor média:**', min_value=1, max_value=200, value=8, step=1)
       selected_long = st.slider('**Selecione a maior média:**', min_value=selected_short+1, max_value=200, value=21, step=1)
         
       # Calculating Exponential Moving Averages (EMA)
@@ -182,6 +182,8 @@ if selected_page == 'Estratégias Bull':
       # Calculating returns and capital
       trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
       trades['Return'] = round(trades.Return, 2)
+      positive_percentage = (trades['return'] > 0).mean() * 100
+      positive_percentage = round(positive_percentage,2)
       return_list = trades['Return'].to_list()
       capital = 100
       for i in return_list:
@@ -203,10 +205,12 @@ if selected_page == 'Estratégias Bull':
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-    
+      st.write(f'**Trades com retorno positivo: {positive_percentage}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
       st.write(f'**Retorno mediano por trade: {mediana}**')
+      
+    
     
     
     with col1:    
