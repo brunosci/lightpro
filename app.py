@@ -1813,7 +1813,7 @@ else:
             for j in lista:
               try:
                 database=[]
-                ticker = j+'.SA
+                ticker = j+'.SA'
             
                 stock_data = yf.download(ticker, start=start_date)
                 short_window=12
