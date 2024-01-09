@@ -1969,10 +1969,10 @@ else:
                 capital = capital - 100
                 capital = round(capital,2)             
                 st.title(j)
-                st.write('Retorno da estratégia: ', capital)
+                st.markdown('Retorno da estratégia: ', capital)
                 mediana = trades.Return.median()
                 mediana = round(mediana, 2)
-                st.write('Retorno mediano por trade: ',mediana)
+                st.markdown('Retorno mediano por trade: ',mediana)
                 desc = trades.describe()
                 st.dataframe(desc)
 
