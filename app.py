@@ -1968,7 +1968,8 @@ else:
                 for i in return_list:
                   capital = capital + capital * (i/100)
                 capital = capital - 100
-                capital = round(capital,2)             
+                capital = round(capital,2)
+                st.markdown(f"<h6 style='text-align: left; color: white; background-color: #8B0000; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)         
                 st.title(j)
 
                 capital = 100
