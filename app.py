@@ -1873,17 +1873,124 @@ else:
             st.markdown(condicao_prox)  
 
 
-
-
-
-
-
-
-
-
-
-
-
+            for j in condicao_prox:
+              try:
+                database=[]
+                ticker = j+'.SA'            
+            
+                stock_data = yf.download(ticker, start=start_date)
+                short_window=12
+                long_window=26
+                signal_window=9
+            
+                short_ema = stock_data['Close'].ewm(span=short_window, adjust=False).mean()
+                long_ema = stock_data['Close'].ewm(span=long_window, adjust=False).mean()
+            
+                stock_data['short_ema'] = short_ema
+                stock_data['long_ema'] = long_ema
+            
+                macd_line = short_ema - long_ema
+            
+                signal_line = macd_line.ewm(span=signal_window, adjust=False).mean()
+            
+                histogram = macd_line - signal_line
+            
+                stock_data['Histogram'] = histogram
+                stock_data['Increases'] = stock_data['Histogram'].diff().gt(0)
+                stock_data['MACD'] = macd_line
+                stock_data['Signal_Line'] = signal_line
+            
+            
+                entry_price = 0
+                exit_price = 0
+                total_return = 0
+            
+            
+                consecutive_true_count = 0
+                consecutive_false_count = 0
+                in_trade = False
+                trades_buy = []
+                trades_sell = []
+                trades_periodo = []
+                trades_drawdown = []
+                trades_high=[]
+            
+                for index, row in stock_data.iterrows():
+                    if row['Increases']:
+                        consecutive_true_count += 1
+                        consecutive_false_count = 0
+                    else:
+                        consecutive_true_count = 0
+                        consecutive_false_count += 1
+            
+                    if consecutive_true_count == 3 and not in_trade:
+                        in_trade = True
+                        entry_price = row['Close']
+                        entry_price = round(entry_price, 2)
+                        trades_buy.append(entry_price)
+                        inicio = index
+                        drawdown = row['Close']
+                        highest =  row['Close']
+                    elif in_trade == True and row['High'] > highest:
+                        highest = row['High']
+                    elif in_trade and row['Low'] < drawdown:
+                        drawdown = row['Low']
+                    elif in_trade and highest >= percent * entry_price:
+                        in_trade = False
+                        exit_price = row['Close']
+                        exit_price = round(exit_price, 2)
+                        trades_sell.append(exit_price)
+                        fim = index
+                        periodo = fim - inicio
+                        periodo = periodo.days  # Extract the number of days
+                        periodo = int(periodo)
+                        trades_periodo.append(periodo)
+                        drawdown = ((drawdown / entry_price) - 1) * 100
+                        drawdown = round(drawdown, 2)
+                        trades_drawdown.append(drawdown)
+                        if exit_price > highest:
+                          highest = exit_price
+                        high = ((highest/entry_price)-1)*100
+                        high = round(high,2)
+                        trades_high.append(high)
+        
+        
+                if len(trades_buy) != len(trades_sell):
+                    trades_buy = trades_buy[:-1]
+                      
+                # Creating DataFrame for trades
+                trades = pd.DataFrame({'Buy': trades_buy, 'Sell': trades_sell, 'Period': trades_periodo, 'Drawdown': trades_drawdown, 'Max Return': trades_high})
+              
+                # Calculating returns and capital
+                trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
+                trades['Return'] = round(trades.Return, 2)
+                return_list = trades['Return'].to_list()
+                capital = 100
+                for i in return_list:
+                    capital = capital + capital * (i / 100)
+                capital = capital - 100
+                capital = round(capital, 2)
+              
+                # Displaying results in Streamlit
+            
+                    
+                capital = 100
+                total_return = 1
+                evolution = []
+            
+                for index, r_value in trades['Return'].items():
+                    total_return *= 1 + (trades.loc[index, 'Return'])/100
+                    total_return_per = (total_return-1)*100
+                    evolution.append(total_return_per)
+                global_r = (total_return - 1) * 100 
+                global_r = round(global_r,2)
+                st.title(j)
+                st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
+            
+                mediana = trades.Return.median()
+                mediana = round(mediana, 2)
+                st.write(f'**Retorno mediano por trade: {mediana}**')
+    
 
 
 
