@@ -1862,7 +1862,6 @@ else:
                       else:
                           consecutive_true_count = 0
                           consecutive_false_count += 1
-                          None
                       if consecutive_true_count == 2:
                         condicao_prox.append(j)
                       else:
