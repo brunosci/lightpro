@@ -1799,5 +1799,3 @@ else:
     else:
         None
 
-else:
-    None
