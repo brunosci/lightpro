@@ -1990,10 +1990,11 @@ else:
                 mediana = trades.Return.median()
                 mediana = round(mediana, 2)
                 st.write(f'**Retorno mediano por trade: {mediana}**')
+                  
               except:
-                None
-else:
-    None
+                  None
+    else:
+        None
     
 
 
