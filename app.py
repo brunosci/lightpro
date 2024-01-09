@@ -1866,10 +1866,10 @@ else:
                       if consecutive_true_count == 2:
                         condicao_prox.append(j)
                       else:
-                        None
+                        st.write('')
             
               except:
-                None
+                st.write('')
             
             st.dataframe(condicao_prox, use_container_width=True)  
 
