@@ -2002,7 +2002,7 @@ else:
         
                 with col333:
                     st.write('**Trades individuais**')
-                    st.dataframe(trades, use_container_width=True)  
+                    st.dataframe(desc, use_container_width=True)  
 
 
                   
