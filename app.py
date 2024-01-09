@@ -1868,7 +1868,7 @@ else:
                         
             
               except:
-                
+                None
             
             st.dataframe(condicao_prox, use_container_width=True)  
 
