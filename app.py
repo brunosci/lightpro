@@ -182,8 +182,9 @@ if selected_page == 'Estratégias Bull':
       # Calculating returns and capital
       trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
       trades['Return'] = round(trades.Return, 2)
-      positive_percentage = (trades['Return'] > 0)/(len(trades['Return'])) * 100
-      positive_percentage = round(positive_percentage,2)
+      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+      percentage_positive = (len(positive_values) / len(trades)) * 100
+      percentage_positive = round(percentage_positive,2)
       return_list = trades['Return'].to_list()
       capital = 100
       for i in return_list:
@@ -205,7 +206,7 @@ if selected_page == 'Estratégias Bull':
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-      st.write(f'**Trades com retorno positivo: {positive_percentage}%**')
+      st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
       st.write(f'**Retorno mediano por trade: {mediana}**')
