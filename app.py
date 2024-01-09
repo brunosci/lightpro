@@ -1869,8 +1869,9 @@ else:
             
               except:
                 None
-            
-            st.markdown(condicao_prox)  
+                  
+            st.write('Ações que atendem atualmente as codinções presentes nos parâmetros:')
+            st.text(condicao_prox)  
 
             for j in condicao_prox:
               try:
