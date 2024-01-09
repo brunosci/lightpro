@@ -32,9 +32,10 @@ header {visibility: hidden;}
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-
-logo_path = "logoquantsistent.JPG"
-st.image(logo_path, width=400)
+col1000, col2000, col3000 = st.columns([1,1,1],gap='large')
+with col3000:
+    logo_path = "logoquantsistent.JPG"
+    st.image(logo_path, width=400)
 
 
 
