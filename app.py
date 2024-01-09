@@ -182,9 +182,6 @@ if selected_page == 'Estratégias Bull':
       # Calculating returns and capital
       trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
       trades['Return'] = round(trades.Return, 2)
-      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
-      percentage_positive = (len(positive_values) / len(trades)) * 100
-      percentage_positive = round(percentage_positive,2)
       return_list = trades['Return'].to_list()
       capital = 100
       for i in return_list:
@@ -206,10 +203,13 @@ if selected_page == 'Estratégias Bull':
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
+      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+      percentage_positive = (len(positive_values) / len(trades)) * 100
+      percentage_positive = round(percentage_positive,2)
       st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
-      st.write(f'**Retorno mediano por trade: {mediana}**')
+      st.write(f'**Retorno mediano por trade: {mediana} %**')
       
     
     
@@ -341,10 +341,13 @@ if selected_page == 'Estratégias Bull':
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-    
+      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+      percentage_positive = (len(positive_values) / len(trades)) * 100
+      percentage_positive = round(percentage_positive,2)
+      st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
-      st.write(f'**Retorno mediano por trade: {mediana}**')
+      st.write(f'**Retorno mediano por trade: {mediana} %**')
     
     
     with col5:    
@@ -475,10 +478,13 @@ if selected_page == 'Estratégias Bull':
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Retorno mediano por trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
     
 
       with col9:    
@@ -606,10 +612,13 @@ if selected_page == 'Estratégias Bull':
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Retorno mediano por trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
       with col13:    
           fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
@@ -759,11 +768,14 @@ if selected_page == 'Estratégias Bull':
               evolution.append(total_return_per)
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
-          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True) 
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Retorno mediano por trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
 
       with col17:    
@@ -890,10 +902,13 @@ if selected_page == 'Estratégias Bull':
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Retorno global das posições encerradas: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Retorno mediano por trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
 
       with col21:    
@@ -1052,10 +1067,13 @@ else:
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-    
+      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+      percentage_positive = (len(positive_values) / len(trades)) * 100
+      percentage_positive = round(percentage_positive,2)
+      st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
-      st.write(f'**Median return per trade: {mediana}**')
+      st.write(f'**Retorno mediano por trade: {mediana} %**')
     
     
     with col1:    
@@ -1184,10 +1202,13 @@ else:
       global_r = (total_return - 1) * 100 
       global_r = round(global_r,2)
       st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-    
+      positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+      percentage_positive = (len(positive_values) / len(trades)) * 100
+      percentage_positive = round(percentage_positive,2)
+      st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
       mediana = trades.Return.median()
       mediana = round(mediana, 2)
-      st.write(f'**Median return per trade: {mediana}**')
+      st.write(f'**Retorno mediano por trade: {mediana} %**')
     
     
     with col5:    
@@ -1318,10 +1339,13 @@ else:
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
     
 
@@ -1450,10 +1474,13 @@ else:
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
       with col13:    
           fig_combined_cumulative = px.line(evolution, title='Retorno cumulativo da estratégia')
@@ -1602,10 +1629,13 @@ else:
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
 
       with col17:    
@@ -1732,10 +1762,13 @@ else:
           global_r = (total_return - 1) * 100 
           global_r = round(global_r,2)
           st.markdown(f"<h5 style='text-align: left; color: grey;'>Global return of closed positions: {global_r} %</h5>", unsafe_allow_html=True)
-        
+          positive_values = trades[trades['Return'] > 0]  # Seleciona apenas os valores positivos
+          percentage_positive = (len(positive_values) / len(trades)) * 100
+          percentage_positive = round(percentage_positive,2)
+          st.write(f'**Trades com retorno positivo: {percentage_positive}%**')
           mediana = trades.Return.median()
           mediana = round(mediana, 2)
-          st.write(f'**Median return per trade: {mediana}**')
+          st.write(f'**Retorno mediano por trade: {mediana} %**')
 
 
       with col21:    
