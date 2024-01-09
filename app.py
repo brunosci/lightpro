@@ -1754,4 +1754,55 @@ if selected_option == 'Light':
               st.dataframe(trades, use_container_width=True)   
 
 else:
-    None
+    col200, col300 = st.columns([1,1],gap='large')
+    
+    with col200:
+        start_date = st.date_input('Data inicial', value=datetime(2023, 1, 1))
+        st.session_state['start_date']=start_date
+        
+    with col300:
+        today = datetime.now().date()
+        tomorrow = today + timedelta(days=1)
+        end_date = st.date_input('Data final', value=today)
+        end_date= end_date + timedelta(days=1)
+        st.session_state['end_date'] = end_date
+    
+    
+    selected_page = option_menu(menu_title = None, options =['Estratégias Bull', 'Estratégias Sell'], icons=['graph-up-arrow', 'graph-down-arrow'], default_index=0, orientation="horizontal")
+
+    lista = ["ABEV3", "ALPA4", "ALSO3", "ARZZ3", "ASAI3", "AZUL4", "B3SA3", "BBAS3","BBDC3", "BBDC4", "BBSE3", "BEEF3", "BHIA3", "BPAC11", "BRAP4", "BRFS3","BRKM5", "CCRO3", "CIEL3", "CMIG4", "CMIN3", "COGN3", "CPFE3", "CPLE6","CRFB3", "CSAN3", "CSNA3", "CVCB3", "CYRE3", "DXCO3", "EGIE3", "ELET3","ELET6", "EMBR3", "ENEV3", "ENGI11", "EQTL3", "EZTC3", "FLRY3", "GGBR4","GOAU4", "GOLL4", "HAPV3", "HYPE3", "IGTI11", "IRBR3", "ITSA4", "ITUB4","JBSS3", "KLBN11", "LREN3", "LWSA3", "MGLU3", "MRFG3", "MRVE3", "MULT3","NTCO3", "PCAR3", "PETR3", "PETR4", "PETZ3", "PRIO3", "RADL3", "RAIL3","RAIZ4", "RDOR3", "RECV3", "RENT3", "RRRP3", "SANB11", "SBSP3", "SLCE3","SMTO3", "SOMA3", "SUZB3", "TAEE11", "TIMS3", "TOTS3", "UGPA3", "USIM5","VALE3", "VAMO3", "VBBR3", "VIVT3", "WEGE3", "YDUQ3"]
+        
+    if selected_page == 'Estratégias Bull':   
+
+    ############ MACD
+        
+        st.markdown(f"<h2 style='text-align: left; color: white; background-color: #006400; padding: 10px; border-radius: 0px;'>MACD</h2>", unsafe_allow_html=True)         
+        st.markdown(f"<h6 style='text-align: left; color: white; background-color: #228B22; padding: 10px; border-radius: 0px;'></h6>", unsafe_allow_html=True)      
+        #st.title('MACD')
+    
+        start_date = st.session_state.start_date
+        end_date = st.session_state.end_date
+        end_date = end_date - timedelta(days=1)
+        
+        col16 = st.columns([1],gap='large')
+        #col18, col19 = st.columns([1,1],gap='large')
+    
+        if selected_page != "Sell":
+    
+          # Partition 1
+          with col16:
+              st.write(" ")
+              st.write(" ")
+              st.write("The strategy involves using Exponential Moving Averages (EMAs) on the closing price and volume. Users can select the EMA values for both parameters using sliders. The strategy identifies whether the closing price is above the EMA and if the volume is also above the EMA. When the conditions are met, it executes a trade, calculating buy and sell points based on certain criteria for high and low values.")
+              
+              short_window = st.slider('**Selecione a média (EMA) curta:**', min_value=0, max_value=40, value=12, step=1)
+              long_window = st.slider('**Selecione a média (EMA) longa:**', min_value=0, max_value=40, value=26, step=1)
+              n_consecutive_true_count = st.slider('**Selecione o número de valores crescentes consecutivos do MACD:**', min_value=0, max_value=10, value=3, step=1)
+              
+              signal_window=9
+
+        else:
+            None
+
+    else:
+        None
