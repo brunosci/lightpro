@@ -1870,8 +1870,8 @@ else:
               except:
                 None
                   
-            st.write('Ações que atendem atualmente as codinções presentes nos parâmetros:')
-            st.text(condicao_prox)  
+            st.markdown('Ações que atendem atualmente as codinções presentes nos parâmetros:')
+            st.write(condicao_prox)  
 
             for j in condicao_prox:
               try:
