@@ -182,7 +182,7 @@ if selected_page == 'Estratégias Bull':
       # Calculating returns and capital
       trades['Return'] = (trades['Sell'] / trades['Buy'] - 1) * 100
       trades['Return'] = round(trades.Return, 2)
-      positive_percentage = (trades['return'] > 0).mean() * 100
+      positive_percentage = (trades['Return'] > 0)/(len(trades['Return'])) * 100
       positive_percentage = round(positive_percentage,2)
       return_list = trades['Return'].to_list()
       capital = 100
