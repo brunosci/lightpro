@@ -37,7 +37,8 @@ with col3000:
     logo_path = "logoquantsistent.JPG"
     st.image(logo_path, width=400)
 
-
+st.write('')
+st.write('')
 
 col100, col200, col300 = st.columns([1,1,1],gap='large')
 
