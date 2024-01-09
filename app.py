@@ -1967,17 +1967,15 @@ else:
                 for i in return_list:
                   capital = capital + capital * (i/100)
                 capital = capital - 100
-                capital = round(capital,2)
-                if capital > 25:
-                  print(j)
-                  print('Retorno da estratégia: ', capital)
-                  mediana = trades.Return.median()
-                  mediana = round(mediana, 2)
-                  print('Retorno mediano por trade: ',mediana)
-                  desc = trades.describe()
-                  display(desc)
-                else:
-                  None
+                capital = round(capital,2)             
+                st.title(j)
+                st.write('Retorno da estratégia: ', capital)
+                mediana = trades.Return.median()
+                mediana = round(mediana, 2)
+                st.write('Retorno mediano por trade: ',mediana)
+                desc = trades.describe()
+                st.dataframe(desc)
+
             
               except:
                 None
